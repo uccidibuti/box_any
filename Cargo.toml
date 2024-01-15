@@ -5,6 +5,8 @@ edition = "2021"
 authors = ["Lorenzo Vannucci <lorenzo@vannucci.io>"]
 readme = "README.md"
 repository = "https://github.com/uccidibuti/box_any"
+license = "MIT"
+documentation = "https://docs.rs/box_any/"
 description = """
 A wrap Box without generic type that allows dynamic dispatch / downcast.
 """
