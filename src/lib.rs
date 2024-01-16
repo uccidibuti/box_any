@@ -1,10 +1,10 @@
 //! # box_any
 //!
-//! A wrap Box without generic type that allows dynamic dispatch / downcast.
+//! A Box wrapper without generic type that allows dynamic dispatch / downcast
+//! but without using fat pointer.
 //!
-//! Allows dynamic dispatch like Box<dyn Any> but without using fat pointer.
-//! Provides a dynamic box type `BoxAny`, which contains a Box<T> value.
-//! `BoxAny' is similar to Box<dyn Any> from `std::any::Any` but it doesn't use
+//! Provides a dynamic box type `BoxAny`, which contains a `Box<T>` value.
+//! `BoxAny` is similar to Box<dyn Any> but it doesn't use
 //! fat pointer to dynamic dispatch.
 
 
