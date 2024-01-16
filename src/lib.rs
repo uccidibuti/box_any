@@ -47,24 +47,24 @@ impl BoxAny {
 
     pub fn downcast_ref<T: 'static>(&self) -> Option<&T> {
         if self.is::<T>() {
-            return Some(self.downcast_unchecked_ref());
+            return Some(unsafe { self.downcast_ref_unchecked() });
         }
         None
     }
 
     pub fn downcast_mut<T: 'static>(&mut self) -> Option<&mut T> {
         if self.is::<T>() {
-            return Some(self.downcast_unchecked_mut());
+            return Some(unsafe { self.downcast_mut_unchecked() });
         }
         None
     }
 
-    pub fn downcast_unchecked_ref<T: 'static>(&self) -> &T {
-        unsafe { &*(self.ptr as *const T) }
+    pub unsafe fn downcast_ref_unchecked<T: 'static>(&self) -> &T {
+        &*(self.ptr as *const T)
     }
 
-    pub fn downcast_unchecked_mut<T: 'static>(&mut self) -> &mut T {
-        unsafe { &mut *(self.ptr as *mut T) }
+    pub unsafe fn downcast_mut_unchecked<T: 'static>(&mut self) -> &mut T {
+        &mut *(self.ptr as *mut T)
     }
 
     pub fn into_inner<T: 'static>(self) -> Option<Box<T>> {
