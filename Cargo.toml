@@ -8,9 +8,11 @@ repository = "https://github.com/uccidibuti/box_any"
 license = "MIT"
 documentation = "https://docs.rs/box_any/"
 description = """
-A wrap Box without generic type that allows dynamic dispatch / downcast.
+Provides a dynamic box type `BoxAny`, which contains a `Box<T>` value.
+`BoxAny` is similar to Box<dyn Any> but it doesn't use
+fat pointer to dynamic dispatch.
 """
-keywords = ["downcast", "dynamic", "dispatch", "any", "box"]
+keywords = ["downcast", "dynamic dispatch", "any", "dispatch", "dynamic", "box"]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
