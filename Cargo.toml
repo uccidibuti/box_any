@@ -9,7 +9,7 @@ license = "MIT"
 documentation = "https://docs.rs/box_any/"
 description = """
 Provides a dynamic box type `BoxAny`, which contains a `Box<T>` value.
-`BoxAny` is similar to Box<dyn Any> but it doesn't use
+`BoxAny` is similar to `Box<dyn Any>` but it doesn't use
 fat pointer to dynamic dispatch.
 """
 keywords = ["downcast", "dispatch", "any", "dynamic", "box"]

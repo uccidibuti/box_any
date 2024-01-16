@@ -3,13 +3,13 @@ A Box wrapper without generic type that allows dynamic dispatch / downcast
 but without using fat pointer.
 
 Provides a dynamic box type `BoxAny`, which contains a `Box<T>` value.
-`BoxAny` is similar to Box<dyn Any> but it doesn't use
+`BoxAny` is similar to `Box<dyn Any>` but it doesn't use
 fat pointer to dynamic dispatch.
 
 ## Benchmarks
 In this benchmark [bench](./benches/bench.rs) we create a Vec container composed by 4 Vec with different types (u8, u16, u32, u64) and then we insert 1M integer for each Vec type (`Vec<u8>, Vec<u16>, Vec<u32>, Vec<u64>`). To do this we use and compare two different approach:
 - dyn box ([dyn Trait standard approach](https://bennett.dev/rust/downcast-trait-object/)): we create a Vec container with type: `Vec<Box<dyn Array>>` and we use downcast + push method to insert 1M integer for each Vec type. 
-- box_any: we create a Vec container with type `Vec<BoxAny>` and we use BoxAny downcast + push method to insert 1M integer for each Vec type.
+- box_any: we create a Vec container with type `Vec<BoxAny>` and we use `BoxAny` downcast + push method to insert 1M integer for each Vec type.
 
 As we can see from the result, using `BoxAny` approach to downcast and fill each Vec  is faster then using `dyn Trait` approach.
 ```
