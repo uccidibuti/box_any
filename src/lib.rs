@@ -74,8 +74,10 @@ impl BoxAny {
         None        
     }
 
-    pub fn into_inner_unchecked<T: 'static>(self) -> Box<T> {
-        unsafe { Box::from_raw(self.ptr as *mut T) }
+    pub fn into_inner_unchecked<T: 'static>(mut self) -> Box<T> {
+        let inner = unsafe { Box::from_raw(self.ptr as *mut T) };
+        self.ptr = std::ptr::null_mut();
+        inner
     }
 }
 
@@ -108,7 +110,9 @@ impl<T: 'static> From<Box<T>> for BoxAny {
 }
 
 fn drop_ptr<T>(ptr: c_void_mut_ptr) {
-    unsafe { let _ = Box::from_raw(ptr as *mut T); };
+    if !ptr.is_null() {
+        unsafe { let _ = Box::from_raw(ptr as *mut T); };
+    }
 }
 
 impl Drop for BoxAny {
